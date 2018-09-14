@@ -15,6 +15,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(merge_str("?#'G[tUqc%qeyS4lx4fJWc^&6","?#[%ey4xJ^&6","'GtUqcqSl4fWc"),1)
         self.assertEqual(merge_str("ca","c","ab"),0)
         self.assertEqual(merge_str("cc","c","c"),1)
+        self.assertEqual(merge_str("Java1Java1", "Java1", "ava1"), 0)
 
 
 
@@ -32,6 +33,12 @@ def merge_str(merge, str1, str2):
                     k += 1
                     l += 1
                     m += 1
+                    if l == len(str2):
+                        l -= m
+                        m = 0
+                    if k == len(str1):
+                        k -= m
+                        m = 0
                 else:
                     if merge[i] == str1[k]:
                         i += 1
@@ -50,16 +57,12 @@ def merge_str(merge, str1, str2):
                             l -= m
                             m = 0
         elif k == len(str1):
-            l -= m
-            m = 0
             if merge[i] == str2[l]:
                 i += 1
                 l += 1
             else:
                 return 0
         elif l == len(str2):
-            k -= m
-            m = 0
             if merge[i] == str1[k]:
                 i += 1
                 k += 1
