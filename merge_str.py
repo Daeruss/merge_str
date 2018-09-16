@@ -9,7 +9,7 @@ class TestStringMethods(unittest.TestCase):
         self.assertEqual(merge_str("javascript", "jav", "script"), 0)
         self.assertEqual(merge_str("java not script", "java ", "not script"),1)
         self.assertEqual(merge_str("javascript", "java", "scriptp"), 0)
-        self.assertEqual(merge_str("Java1Java4Java1Java3", "Java1Java3", "Java1Java3"), 0)
+        self.assertEqual(merge_str("Java1Java3Java1Java3", "Java1Java1", "Java3Java3"), 1)
         self.assertEqual(merge_str('Bananas from Bahamas', 'Bahas', 'Bananas from am'), 1)
         self.assertEqual(merge_str('codewars','cwdr','oeas'), 0)
         self.assertEqual(merge_str("?#'G[tUqc%qeyS4lx4fJWc^&6","?#[%ey4xJ^&6","'GtUqcqSl4fWc"),1)
@@ -65,6 +65,7 @@ def merge_str(merge, str1, str2):
         elif l == len(str2):
             if merge[i] == str1[k]:
                 i += 1
+                
                 k += 1
             else:
                 return 0
